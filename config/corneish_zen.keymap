@@ -2,6 +2,13 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+#define NAV_L 1
+#define OTH_L 2
+#define NUM_L 3
+#define SYM_L 4
+#define MED_L 5
+#define FUN_L 6
+
 / {
   chosen {
     //zmk,matrix_transform = &default_transform;
@@ -9,7 +16,114 @@
   };
 };
 
+// Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
+&lt { quick_tap_ms = <200>; };
+
 / {
+
+   combos {
+        compatible = "zmk,combos";
+
+        med_mo {
+	    timeout-ms = <50>;
+            key-positions = <30 31>;
+            bindings = <&mo MED_L>;
+        };
+
+        fn_mo {
+	    timeout-ms = <50>;
+            key-positions = <32 33>;
+            bindings = <&mo FUN_L>;
+        };
+	
+        combo_cut {
+            timeout-ms = <50>;
+            key-positions = <21 23>;
+            bindings = <&kp LC(X)>;
+        };  
+	
+        combo_copy {
+            timeout-ms = <50>;
+            key-positions = <21 22>;
+            bindings = <&kp LC(C)>;
+        };  
+	
+        combo_paste {
+            timeout-ms = <50>;
+            key-positions = <22 23>;
+            bindings = <&mt LS(LC(V)) LC(V)>;
+        }; 
+        combo_bs_left {
+            timeout-ms = <50>;
+            key-positions = <5 6>;
+            layers = <0>;
+            bindings = <&kp LC(BSPC)>;
+        }; 
+	
+       combo_lpar {
+            timeout-ms = <50>;
+            key-positions = <12 13>;
+            layers = <0>;
+            bindings = <&kp LPAR>;
+        };  
+        combo_rpar {
+            timeout-ms = <50>;
+            key-positions = <16 17>;
+            layers = <0>;
+            bindings = <&kp RPAR>;
+        };  
+        combo_rbrac {
+            timeout-ms = <50>;
+            key-positions = <17 18>;
+            layers = <0>;
+            bindings = <&mt RBRC RBKT>;
+        }; 
+        combo_lbrac {
+            timeout-ms = <50>;
+            key-positions = <11 12>;
+            layers = <0>;
+            bindings = <&mt LBRC LBKT>;
+        };
+        combo_lpar_veritcal {
+            timeout-ms = <50>;
+            key-positions = <3 13>;
+            layers = <0>;
+            bindings = <&kp LPAR>;
+        };  
+        combo_rpar_vertical {
+            timeout-ms = <50>;
+            key-positions = <6 16>;
+            layers = <0>;
+            bindings = <&kp RPAR>;
+        };  
+        combo_rbrac_vertical {
+            timeout-ms = <50>;
+            key-positions = <7 17>;
+            layers = <0>;
+            bindings = <&mt RBRC RBKT>;
+        }; 
+        combo_lbrac_vertical {
+            timeout-ms = <50>;
+            key-positions = <2 12>;
+            layers = <0>;
+            bindings = <&mt LBRC LBKT>;
+        }; 
+	
+       combo_eq_vertical {
+            timeout-ms = <50>;
+            key-positions = <4 14>;
+            layers = <0>;
+            bindings = <&mt EQUAL PLUS>;
+        };	
+       combo_cap_word{
+            timeout-ms = <50>;
+            key-positions = <16 13>;
+            layers = <0>;
+            bindings = <&caps_word>;
+        };
+    };
+
+
     behaviors {
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
